@@ -4,7 +4,7 @@ Ball::Ball(Vec2& Pos, Vec2& Vel)
 {
 	Position = Pos;
 	Velocity = Vel;
-	BallRectangle = RectR((Vec2(Position.x - Diameter, Position.y - Diameter)), (Vec2(Position.x + Diameter, Position.y + Diameter)));
+	BallRectangle = RectR((Vec2(Position.x - Radius, Position.y - Radius)), (Vec2(Position.x + Radius, Position.y + Radius)));
 }
 
 Ball::~Ball()
@@ -14,11 +14,10 @@ Ball::~Ball()
 void Ball::Update(float delta_time)
 {
 	Position += Velocity * delta_time;
-	BallRectangle = RectR((Vec2(Position.x - Diameter, Position.y - Diameter)), (Vec2(Position.x + Diameter, Position.y + Diameter)));
-	CheckWindowBoundary();
+	BallRectangle = RectR::CentreRectangle(Position, Radius, Radius);
 }
 
-void Ball::DrawBall(Graphics& gfx)
+void Ball::DrawBall(Graphics& gfx) const
 {
 	SpriteCodex::DrawBall(Position, gfx);
 }
@@ -33,31 +32,33 @@ void Ball::ChangeYDirection()
 	Velocity.y = -Velocity.y;
 }
 
-void Ball::CheckWindowBoundary()
+bool Ball::CheckCollision(const RectR& other)
 {
-	if (Position.x <= Diameter)
+	bool Collided = false;
+	if (Position.x - Radius <= other.left)
 	{
-		Position.x = Diameter;
+		Position.x += Position.x - other.left;
 		ChangeXDirection();
-		return;
+		Collided = true;
 	}
-	else if (Position.x >= Graphics::ScreenWidth - Diameter)
+	else if (Position.x + Radius >= other.right)
 	{
-		Position.x = Graphics::ScreenWidth - Diameter;
+		Position.x -=  other.right - Position.x;
 		ChangeXDirection();
-		return;
+		Collided = true;
 	}
 
-	if (Position.y <= Diameter)
+	if (Position.y - Radius <= other.up)
 	{
-		Position.y = Diameter;
+		Position.y += Position.y - other.up;
 		ChangeYDirection();
-		return;
+		Collided = true;
 	}
-	else if (Position.y >= Graphics::ScreenHeight - Diameter)
+	else if (Position.y + Radius >= other.down)
 	{
-		Position.y = Graphics::ScreenHeight - Diameter;
+		Position.y -= other.down - Position.y;
 		ChangeYDirection();
-		return;
+		Collided = true;
 	}
+	return Collided;
 }

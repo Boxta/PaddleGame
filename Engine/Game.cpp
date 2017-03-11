@@ -26,7 +26,10 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd ),
 	brk(Vec2(280, 300), Vec2( 380, 320)),
-	ball(Vec2(100, 100), Vec2(200, 200))
+	ball(Vec2(100, 100), Vec2(200, 200)),
+	GameWindow(0.0f, float(Graphics::ScreenWidth), 0.0f, float(Graphics::ScreenHeight)),
+	soundsPad(L"Sounds\\arkpad.wav"),
+	soundsBrick(L"Sounds\\arkbrick.wav")
 {
 }
 
@@ -40,13 +43,16 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	ball.Update(time.Mark());
-	if (!brk.IsDestroyed && brk.rect.IsOverlapping(ball.BallRectangle))
+	const float dt = time.Mark();
+	ball.Update(dt);
+	if (ball.CheckCollision(GameWindow))
 	{
-		brk.IsDestroyed = true;
-		ball.ChangeYDirection();
+		soundsPad.Play();
 	}
-	
+	if (brk.BallCollision(ball))
+	{
+		soundsBrick.Play();
+	}
 }
 
 void Game::ComposeFrame()
