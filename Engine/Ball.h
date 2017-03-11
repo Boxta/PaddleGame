@@ -19,5 +19,6 @@ public:
 	Vec2 Position;
 	Vec2 Velocity;
 	const float Diameter = 7.0f;
+	RectR BallRectangle;
 };
 

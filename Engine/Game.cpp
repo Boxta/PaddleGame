@@ -25,7 +25,7 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	brk(Vec2(10, 10), Vec2( 80, 20)),
+	brk(Vec2(280, 300), Vec2( 380, 320)),
 	ball(Vec2(100, 100), Vec2(200, 200))
 {
 }
@@ -41,6 +41,12 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	ball.Update(time.Mark());
+	if (!brk.IsDestroyed && brk.rect.IsOverlapping(ball.BallRectangle))
+	{
+		brk.IsDestroyed = true;
+		ball.ChangeYDirection();
+	}
+	
 }
 
 void Game::ComposeFrame()

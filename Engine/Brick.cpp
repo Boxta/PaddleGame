@@ -14,5 +14,7 @@ Brick::~Brick()
 
 void Brick::DrawBrick(Graphics & gfx)
 {
-	gfx.DrawRect(rect, color);
+	if(!IsDestroyed)
+		gfx.DrawRect(rect, color);
 }
+

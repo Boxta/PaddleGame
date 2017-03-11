@@ -14,6 +14,12 @@ RectR::RectR(Vec2& topleft, Vec2& btmright)
 {
 }
 
+RectR::RectR(Vec2 & topleft, float width, float height)
+	:
+	RectR(topleft, Vec2(topleft.x * height, topleft.y * width ))
+{
+}
+
 const bool RectR::IsOverlapping(const RectR& rhs) const
 {
 	return right >= rhs.left &&

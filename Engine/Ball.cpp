@@ -4,8 +4,8 @@ Ball::Ball(Vec2& Pos, Vec2& Vel)
 {
 	Position = Pos;
 	Velocity = Vel;
+	BallRectangle = RectR((Vec2(Position.x - Diameter, Position.y - Diameter)), (Vec2(Position.x + Diameter, Position.y + Diameter)));
 }
-
 
 Ball::~Ball()
 {
@@ -14,6 +14,7 @@ Ball::~Ball()
 void Ball::Update(float delta_time)
 {
 	Position += Velocity * delta_time;
+	BallRectangle = RectR((Vec2(Position.x - Diameter, Position.y - Diameter)), (Vec2(Position.x + Diameter, Position.y + Diameter)));
 	CheckWindowBoundary();
 }
 
