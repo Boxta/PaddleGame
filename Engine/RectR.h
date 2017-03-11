@@ -7,8 +7,8 @@ class RectR
 public:
 	RectR() = default;
 	RectR(float lft, float rght, float Up, float Dwn);
-	RectR(Vec2 topleft, Vec2 btmright);
-	bool IsOverlapping(const RectR& rhs);
+	RectR(Vec2& topleft, Vec2& btmright);
+	const bool IsOverlapping(const RectR& rhs) const;
 	~RectR();
 
 public:

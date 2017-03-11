@@ -16,5 +16,6 @@ public:
 public:
 	RectR rect;
 	Color color = Colors::Blue;
+	bool IsDestroyed = false;
 };
 

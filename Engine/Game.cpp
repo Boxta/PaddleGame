@@ -25,7 +25,8 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	brk(Vec2(10, 10), Vec2( 80, 20))
+	brk(Vec2(10, 10), Vec2( 80, 20)),
+	ball(Vec2(100, 100), Vec2(200, 200))
 {
 }
 
@@ -39,9 +40,11 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	ball.Update(time.Mark());
 }
 
 void Game::ComposeFrame()
 {
 	brk.DrawBrick(gfx);
+	ball.DrawBall(gfx);
 }

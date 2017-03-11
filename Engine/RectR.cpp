@@ -8,16 +8,18 @@ RectR::RectR(float lft, float rght, float Up, float Dwn)
 	down = Dwn;
 }
 
-RectR::RectR(Vec2 topleft, Vec2 btmright)
+RectR::RectR(Vec2& topleft, Vec2& btmright)
 	:
 	RectR(topleft.y, btmright.y, topleft.x, btmright.x)
 {
 }
 
-bool RectR::IsOverlapping(const RectR & rhs)
+const bool RectR::IsOverlapping(const RectR& rhs) const
 {
-	return left >= rhs.left && 
-		 right <= rhs.right
+	return right >= rhs.left &&
+		left <= rhs.right &&
+		down >= rhs.up &&
+		up <= rhs.down;
 }
 
 RectR::~RectR()
