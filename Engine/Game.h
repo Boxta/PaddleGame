@@ -27,6 +27,7 @@
 #include "FrameTimer.h"
 #include "Ball.h"
 #include "Sound.h"
+#include "Paddle.h"
 
 class Game
 {
@@ -47,10 +48,17 @@ private:
 	/********************************/
 	/*  User Variables              */
 	/********************************/
-	Brick brk;
+	const float BrickWidth = 50.0f;
+	const float BrickHeight = 25.0f;
+	static const int BricksWide = 15;
+	static const int BricksDeep = 4;
+	static const int nBricks = BricksWide * BricksDeep;
+	Brick Bricks[nBricks];
 	Ball ball;
 	FrameTimer time;
 	RectR GameWindow;
 	Sound soundsPad;
 	Sound soundsBrick;
+	Paddle pad;
+
 };

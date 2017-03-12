@@ -9,11 +9,11 @@ class Brick
 {
 public:
 	Brick() = default;
-	Brick(Vec2 topleft, Vec2 btmright);
+	Brick(const Vec2 topleft, const Vec2 btmright);
 	~Brick();
 
 	void DrawBrick(Graphics& gfx) const;
-	bool BallCollision(Ball& theball);
+	const bool BallCollision(Ball& theball);
 
 public:
 	RectR rect;

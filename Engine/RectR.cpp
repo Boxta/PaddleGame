@@ -8,13 +8,13 @@ RectR::RectR(float lft, float rght, float Up, float Dwn)
 	down = Dwn;
 }
 
-RectR::RectR(Vec2& topleft, Vec2& btmright)
+RectR::RectR(const Vec2& topleft, const Vec2& btmright)
 	:
 	RectR(topleft.y, btmright.y, topleft.x, btmright.x)
 {
 }
 
-RectR::RectR(Vec2 & topleft, float width, float height)
+RectR::RectR(const Vec2 & topleft, float width, float height)
 	:
 	RectR(topleft, topleft + Vec2(width, height))
 {
@@ -31,6 +31,11 @@ const bool RectR::IsOverlapping(const RectR& rhs) const
 RectR RectR::CentreRectangle(Vec2 & Position, float HalfWidth, float HalfHeight)
 {
 	return RectR(Position - Vec2(HalfWidth, HalfHeight), Position + Vec2(HalfWidth, HalfHeight));
+}
+
+RectR RectR::GetExpanded(float offset) const
+{
+	return RectR(left - offset, right + offset, up - offset, down + offset);
 }
 
 RectR::~RectR()

@@ -15,10 +15,10 @@ Brick::~Brick()
 void Brick::DrawBrick(Graphics & gfx) const
 {
 	if(!IsDestroyed)
-		gfx.DrawRect(rect, color);
+		gfx.DrawRect(rect.GetExpanded(-1), color);
 }
 
-bool Brick::BallCollision(Ball & theball)
+const bool Brick::BallCollision(Ball & theball)
 {
 	if (!IsDestroyed && theball.BallRectangle.IsOverlapping(rect))
 	{
