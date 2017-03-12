@@ -25,7 +25,7 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	ball(Vec2(100, 300), Vec2(500, 500)),
+	ball(Vec2(100, 300), Vec2(200, 200)),
 	GameWindow(0.0f, float(Graphics::ScreenWidth), 0.0f, float(Graphics::ScreenHeight)),
 	soundsPad(L"Sounds\\arkpad.wav"),
 	soundsBrick(L"Sounds\\arkbrick.wav"),
@@ -67,7 +67,7 @@ void Game::UpdateModel()
 	}
 	pad.DoWallCollision(GameWindow);
 
-	if (ball.CheckCollision(GameWindow))
+	if (ball.CheckWindowCollision(GameWindow))
 	{
 		soundsPad.Play();
 	}
