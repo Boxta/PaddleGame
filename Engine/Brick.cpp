@@ -2,9 +2,9 @@
 
 
 
-Brick::Brick(Vec2 topleft, Vec2 btmright)
+Brick::Brick(Vec2 topleft, float width, float height)
 	:
-	rect(topleft, btmright)
+	rect(topleft, width, height)
 {
 }
 
@@ -22,8 +22,15 @@ const bool Brick::BallCollision(Ball & theball)
 {
 	if (!IsDestroyed && theball.BallRectangle.IsOverlapping(rect))
 	{
+		if (theball.Position.x >= rect.left && theball.Position.x <= rect.right)
+		{
+			theball.ChangeYDirection();
+		}
+		else
+		{
+			theball.ChangeXDirection();
+		}
 		IsDestroyed = true;
-		theball.ChangeYDirection();
 		return true;
 	}
 	return false;

@@ -32,7 +32,6 @@ Game::Game( MainWindow& wnd )
 	pad(Vec2(100, 500), 40.0f, 5.0f)
 {
 	const Vec2 BrickStartVector = Vec2(25.0f, 40.0f);
-	const RectR rect = RectR(BrickStartVector, BrickWidth, BrickHeight);
 
 	const Color colors[4] = { Colors::Blue, Colors::Magenta, Colors::Yellow, Colors::Green };
 	int i = 0;
@@ -42,7 +41,8 @@ Game::Game( MainWindow& wnd )
 		for (int x = 0; x < BricksWide; x++)
 		{
 			Vec2 temp = Vec2(BrickStartVector.x + (x * BrickWidth), BrickStartVector.y + (y * BrickHeight));
-			Bricks[i] = Brick(temp, temp + Vec2(BrickWidth, BrickHeight));
+			//Bricks[i] = Brick(temp, BrickWidth, BrickHeight);
+			Bricks[i] = Brick(temp, BrickWidth, BrickHeight);
 			Bricks[i].color = col;
 			i++;
 		}

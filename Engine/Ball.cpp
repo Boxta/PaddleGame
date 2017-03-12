@@ -4,7 +4,7 @@ Ball::Ball(Vec2& Pos, Vec2& Vel)
 {
 	Position = Pos;
 	Velocity = Vel;
-	BallRectangle = RectR((Vec2(Position.x - Radius, Position.y - Radius)), (Vec2(Position.x + Radius, Position.y + Radius)));
+	BallRectangle = RectR::CentreRectangle(Position, Radius, Radius);
 }
 
 Ball::~Ball()

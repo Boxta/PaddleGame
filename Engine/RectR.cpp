@@ -10,7 +10,7 @@ RectR::RectR(float lft, float rght, float Up, float Dwn)
 
 RectR::RectR(const Vec2& topleft, const Vec2& btmright)
 	:
-	RectR(topleft.y, btmright.y, topleft.x, btmright.x)
+	RectR(topleft.x, btmright.x, topleft.y, btmright.y)
 {
 }
 
@@ -35,7 +35,7 @@ RectR RectR::CentreRectangle(Vec2 & Position, float HalfWidth, float HalfHeight)
 
 RectR RectR::GetExpanded(float offset) const
 {
-	return RectR(left - offset, right + offset, up - offset, down + offset);
+	return RectR(left - offset, right + offset, up - offset, down);
 }
 
 RectR::~RectR()

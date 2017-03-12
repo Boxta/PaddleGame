@@ -9,7 +9,7 @@ class Brick
 {
 public:
 	Brick() = default;
-	Brick(const Vec2 topleft, const Vec2 btmright);
+	Brick(const Vec2 topleft, float width, float height);
 	~Brick();
 
 	void DrawBrick(Graphics& gfx) const;
