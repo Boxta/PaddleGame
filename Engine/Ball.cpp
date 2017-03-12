@@ -1,4 +1,5 @@
 #include "Ball.h"
+#include <assert.h>
 
 Ball::Ball(Vec2& Pos, Vec2& Vel)
 {
@@ -32,33 +33,39 @@ void Ball::ChangeYDirection()
 	Velocity.y = -Velocity.y;
 }
 
-bool Ball::CheckCollision(const RectR& other)
+bool Ball::CheckWindowCollision(const RectR& other)
 {
+	const RectR rec = GetRect();
 	bool Collided = false;
-	if (Position.x - Radius <= other.left)
+	if (rec.left <= other.left)
 	{
-		Position.x += Position.x - other.left;
+		Position.x += other.left - rec.left;
 		ChangeXDirection();
 		Collided = true;
 	}
-	else if (Position.x + Radius >= other.right)
+	else if (rec.right >= other.right)
 	{
-		Position.x -=  other.right - Position.x;
+		Position.x -=  rec.right - other.right;
 		ChangeXDirection();
 		Collided = true;
 	}
 
-	if (Position.y - Radius <= other.up)
+	if (rec.up <= other.up)
 	{
-		Position.y += Position.y - other.up;
+		Position.y += other.up - rec.up;
 		ChangeYDirection();
 		Collided = true;
 	}
-	else if (Position.y + Radius >= other.down)
+	else if (rec.down >= other.down)
 	{
-		Position.y -= other.down - Position.y;
+		Position.y -= rec.down - other.down;
 		ChangeYDirection();
 		Collided = true;
 	}
 	return Collided;
+}
+
+RectR Ball::GetRect() const
+{
+	return BallRectangle;
 }

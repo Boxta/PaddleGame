@@ -25,7 +25,7 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	ball(Vec2(100, 300), Vec2(200, 200)),
+	ball(Vec2(100, 300), Vec2(500, 500)),
 	GameWindow(0.0f, float(Graphics::ScreenWidth), 0.0f, float(Graphics::ScreenHeight)),
 	soundsPad(L"Sounds\\arkpad.wav"),
 	soundsBrick(L"Sounds\\arkbrick.wav"),
@@ -38,10 +38,9 @@ Game::Game( MainWindow& wnd )
 	for (int y = 0; y < BricksDeep; y++)
 	{
 		Color col = colors[y];
-		for (int x = 0; x < BricksWide; x++)
+		for (int x = 0; x < BricksWide; x++) 
 		{
 			Vec2 temp = Vec2(BrickStartVector.x + (x * BrickWidth), BrickStartVector.y + (y * BrickHeight));
-			//Bricks[i] = Brick(temp, BrickWidth, BrickHeight);
 			Bricks[i] = Brick(temp, BrickWidth, BrickHeight);
 			Bricks[i].color = col;
 			i++;

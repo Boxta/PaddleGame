@@ -13,8 +13,8 @@ public:
 	void DrawBall(Graphics& gfx) const;
 	void ChangeXDirection();
 	void ChangeYDirection();
-	bool CheckCollision(const RectR& other);
-
+	bool CheckWindowCollision(const RectR& other);
+	RectR GetRect() const;
 public:
 	Vec2 Position;
 	Vec2 Velocity;
